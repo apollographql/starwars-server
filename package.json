@@ -2,8 +2,8 @@
   "name": "apollo-starter-kit",
   "version": "0.1.0",
   "description": "Minimal set of code to write a GraphQL server with Apollo graphql-tools",
-  "main": "index.js",
   "scripts": {
+    "start": "babel-node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,17 +31,8 @@
     "babel-preset-es2015": "6.5.0",
     "babel-preset-react": "6.5.0",
     "babel-preset-stage-0": "6.5.0",
-    "babel-relay-plugin": "0.7.3",
-    "classnames": "2.2.3",
     "express": "4.13.4",
-    "express-graphql": "0.4.9",
-    "graphql": "0.4.17",
-    "graphql-relay": "0.3.6",
-    "react": "0.14.7",
-    "react-dom": "0.14.7",
-    "react-relay": "0.7.3",
-    "webpack": "1.12.13",
-    "webpack-dev-server": "1.14.1"
+    "graphql-tools": "^0.3.6"
   },
   "devDependencies": {
     "babel-cli": "6.5.1"
