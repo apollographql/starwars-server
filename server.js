@@ -9,7 +9,7 @@ graphQLServer.use('/', apolloServer({
   graphiql: true,
   pretty: true,
   schema: Schema,
-  mocks: {},
+  mocks: { String: () => 'It works!' },
 }));
 graphQLServer.listen(GRAPHQL_PORT, () => console.log(
   `GraphQL Server is now running on http://localhost:${GRAPHQL_PORT}`
