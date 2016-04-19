@@ -5,7 +5,7 @@ import Mocks from './data/mocks';
 
 const GRAPHQL_PORT = 8080;
 
-var graphQLServer = express();
+const graphQLServer = express();
 graphQLServer.use('/', apolloServer({
   graphiql: true,
   pretty: true,
