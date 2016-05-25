@@ -27,7 +27,7 @@
   "homepage": "https://github.com/apollostack/apollo-starter-kit#readme",
   "dependencies": {
     "express": "4.13.4",
-    "graphql-tools": "^0.3.6"
+    "graphql-tools": "^0.4.2"
   },
   "devDependencies": {
     "babel-cli": "6.5.1",
