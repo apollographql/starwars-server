@@ -1,5 +1,5 @@
 import express from 'express';
-import { apolloServer } from 'graphql-tools';
+import { apolloServer } from 'apollo-server';
 import Schema from './data/schema';
 import Mocks from './data/mocks';
 
