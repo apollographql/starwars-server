@@ -7,7 +7,7 @@ See also [Tutorial: How to build a GraphQL server](https://medium.com/apollo-sta
 ## Getting started
 
 ```sh
-git clone git@github.com:apollostack/apollo-starter-kit.git
+git clone https://github.com/apollostack/apollo-starter-kit
 cd apollo-starter-kit
 npm install
 npm run start
