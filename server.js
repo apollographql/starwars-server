@@ -1,6 +1,6 @@
 import express from 'express';
 import { apolloServer } from 'apollo-server';
-import Schema from './data/schema';
+import schema from './data/schema.graphql';
 import Mocks from './data/mocks';
 
 const GRAPHQL_PORT = 8080;
@@ -9,7 +9,7 @@ const graphQLServer = express();
 graphQLServer.use('/graphql', apolloServer({
   graphiql: true,
   pretty: true,
-  schema: Schema,
+  schema: [schema],
   mocks: Mocks,
 }));
 graphQLServer.listen(GRAPHQL_PORT, () => console.log(

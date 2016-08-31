@@ -1,0 +1,7 @@
+type Query {
+  testString: String
+}
+
+schema {
+  query: Query
+}
