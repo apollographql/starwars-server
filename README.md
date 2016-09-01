@@ -1,34 +1,25 @@
-# apollo-starter-kit
+# Hello World server
 
-Boilerplate for getting off the ground quickly when writing a GraphQL server.
+The server that is used for the examples on dev.apollodata.com.
 
-See also [Tutorial: How to build a GraphQL server](https://medium.com/apollo-stack/tutorial-building-a-graphql-server-cddaa023c035#.wy5h1htxs) and the solution in the `server-tutorial-solution` branch of this repo.
+This is a really simple GraphQL server that uses [Apollo Server](https://github.com/apollostack/apollo-server) and [GraphQL Tools](https://github.com/apollostack/graphql-tools) to serve a simple schema.
 
-## Getting started
+It uses a very simple in-memory database, so if you restart the server or change the code, the data will reset.
 
-```sh
-git clone https://github.com/apollostack/apollo-starter-kit
-cd apollo-starter-kit
+## Installation
+
+Clone the repository and run `npm install`
+
+```
+git clone https://github.com/apollostack/frontpage-server
+cd frontpage-server
 npm install
-npm run start
 ```
 
-Then open [http://localhost:8080](http://localhost:8080)
-
-When you paste this on the left side of the page:
+## Starting the server
 
 ```
-{
-  testString
-}
+npm start
 ```
 
-and hit the play button (cmd-return), then you should get this on the right side:
-
-```json
-{
-  "data": {
-    "testString": "It works!"
-  }
-}
-```  
+The server will run on port 8080. You can change this by editing `server.js`.
