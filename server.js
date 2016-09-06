@@ -4,7 +4,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import Schema from './data/schema.graphql'; // eslint-disable-line
+import Schema from './data/schema.js';
 import Resolvers from './data/resolvers';
 
 const GRAPHQL_PORT = 8080;

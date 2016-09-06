@@ -1,3 +1,4 @@
+export default `
 type Author {
   id: Int! # the ! means that every author object _must_ have an id
   firstName: String
@@ -30,3 +31,4 @@ schema {
   query: Query
   mutation: Mutation
 }
+`;
