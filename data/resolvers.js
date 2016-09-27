@@ -1,4 +1,5 @@
 import { find, filter } from 'lodash';
+import { pubsub } from './subscriptions';
 
 const authors = [
   { id: 1, firstName: 'Tom', lastName: 'Coleman' },
@@ -24,6 +25,12 @@ const resolveFunctions = {
         throw new Error(`Couldn't find post with id ${postId}`);
       }
       post.votes += 1;
+      pubsub.publish('postUpvoted', post);
+      return post;
+    },
+  },
+  Subscription: {
+    postUpvoted(post) {
       return post;
     },
   },

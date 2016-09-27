@@ -1,4 +1,8 @@
-export default `
+import { makeExecutableSchema } from 'graphql-tools';
+
+import resolvers from './resolvers';
+
+const schema = `
 type Author {
   id: Int! # the ! means that every author object _must_ have an id
   firstName: String
@@ -25,10 +29,13 @@ type Mutation {
   ): Post
 }
 
-# we need to tell the server which types represent the root query
-# and root mutation types. We call them RootQuery and RootMutation by convention.
-schema {
-  query: Query
-  mutation: Mutation
+type Subscription {
+  postUpvoted: Post
 }
+
 `;
+
+export default makeExecutableSchema({
+  typeDefs: schema,
+  resolvers
+});
