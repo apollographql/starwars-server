@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
+import { printSchema } from 'graphql/utilities/schemaPrinter'
 
 import { subscriptionManager } from './data/subscriptions';
 import schema from './data/schema';
@@ -21,6 +22,11 @@ graphQLServer.use('/graphql', bodyParser.json(), apolloExpress({
 graphQLServer.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
 }));
+
+graphQLServer.use('/schema', function(req, res, _next) {
+  res.set('Content-Type', 'text/plain');
+  res.send(printSchema(schema));
+});
 
 graphQLServer.listen(GRAPHQL_PORT, () => console.log(
   `GraphQL Server is now running on http://localhost:${GRAPHQL_PORT}/graphql`
