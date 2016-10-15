@@ -1,18 +1,14 @@
-# Hello World server
+# Star Wars example server
 
-The server that is used for the examples on dev.apollodata.com.
-
-This is a really simple GraphQL server that uses [Apollo Server](https://github.com/apollostack/apollo-server) and [GraphQL Tools](https://github.com/apollostack/graphql-tools) to serve a simple schema.
-
-It uses a very simple in-memory database, so if you restart the server or change the code, the data will reset.
+This is a really simple GraphQL server that uses [Apollo Server](https://github.com/apollostack/apollo-server) and [GraphQL Tools](https://github.com/apollostack/graphql-tools) to serve the Star Wars example schema from http://www.graphql.org.
 
 ## Installation
 
 Clone the repository and run `npm install`
 
 ```
-git clone https://github.com/apollostack/frontpage-server
-cd frontpage-server
+git clone https://github.com/apollostack/starwars-server
+cd starwars-server
 npm install
 ```
 
