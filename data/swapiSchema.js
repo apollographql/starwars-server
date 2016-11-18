@@ -87,6 +87,9 @@ type Human implements Character {
   # What this human calls themselves
   name: String!
 
+  # The home planet of the human, or null if unknown
+  homePlanet: String
+
   # Height in the preferred unit, default is meters
   height(unit: LengthUnit = METER): Float
 
@@ -204,6 +207,7 @@ const humans = [
     name: 'Luke Skywalker',
     friends: [ '1002', '1003', '2000', '2001' ],
     appearsIn: [ 'NEWHOPE', 'EMPIRE', 'JEDI' ],
+    homePlanet: 'Tatooine',
     height: 1.72,
     mass: 77,
     starships: [ '3001', '3003' ],
@@ -213,6 +217,7 @@ const humans = [
     name: 'Darth Vader',
     friends: [ '1004' ],
     appearsIn: [ 'NEWHOPE', 'EMPIRE', 'JEDI' ],
+    homePlanet: 'Tatooine',
     height: 2.02,
     mass: 136,
     starships: [ '3002' ],
@@ -231,6 +236,7 @@ const humans = [
     name: 'Leia Organa',
     friends: [ '1000', '1002', '2000', '2001' ],
     appearsIn: [ 'NEWHOPE', 'EMPIRE', 'JEDI' ],
+    homePlanet: 'Alderaan',
     height: 1.5,
     mass: 49,
     starships: [],
