@@ -177,6 +177,16 @@ input ReviewInput {
 
   # Comment about the movie, optional
   commentary: String
+
+  # Favorite color, optional
+  favoriteColor: ColorInput
+}
+
+# The input object sent when passing in a color
+input ColorInput {
+  red: Int!
+  green: Int!
+  blue: Int!
 }
 
 type Starship {
