@@ -198,6 +198,8 @@ type Starship {
 
   # Length of the starship, along the longest axis
   length(unit: LengthUnit = METER): Float
+
+  coordinates: [[Float!]!]
 }
 
 union SearchResult = Human | Droid | Starship
@@ -492,6 +494,9 @@ const resolvers = {
       }
 
       return length;
+    },
+    coordinates: () => {
+      return [[1, 2], [3, 4]];
     }
   },
   SearchResult: {
