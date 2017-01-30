@@ -1,10 +1,10 @@
 import express from 'express';
-import { apolloExpress, graphiqlExpress } from 'apollo-server';
+import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
-import { printSchema } from 'graphql/utilities/schemaPrinter'
+import { printSchema } from 'graphql/utilities/schemaPrinter';
 
 import { subscriptionManager } from './data/subscriptions';
 import schema from './data/schema';
@@ -14,7 +14,7 @@ const WS_PORT = 8090;
 
 const graphQLServer = express().use('*', cors());
 
-graphQLServer.use('/graphql', bodyParser.json(), apolloExpress({
+graphQLServer.use('/graphql', bodyParser.json(), graphqlExpress({
   schema,
   context: {},
 }));
@@ -23,7 +23,7 @@ graphQLServer.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
 }));
 
-graphQLServer.use('/schema', function(req, res, _next) {
+graphQLServer.use('/schema', (req, res) => {
   res.set('Content-Type', 'text/plain');
   res.send(printSchema(schema));
 });
