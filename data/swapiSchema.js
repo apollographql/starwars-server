@@ -179,7 +179,7 @@ input ReviewInput {
   commentary: String
 
   # Favorite color, optional
-  favoriteColor: ColorInput
+  favorite_color: ColorInput
 }
 
 # The input object sent when passing in a color
