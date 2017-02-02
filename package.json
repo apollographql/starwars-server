@@ -1,6 +1,6 @@
 {
   "name": "apollo-starter-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Minimal set of code to write a GraphQL server with Apollo graphql-tools",
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node",
