@@ -1,15 +1,14 @@
 {
-  "name": "apollo-starter-kit",
+  "name": "starwars-server",
   "version": "0.1.1",
-  "description": "Minimal set of code to write a GraphQL server with Apollo graphql-tools",
+  "description": "GraphQL Server setup with an example Star Wars schema",
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apollostack/apollo-starter-kit.git"
+    "url": "git+https://github.com/apollographql/starwars-server.git"
   },
   "keywords": [
     "Node.js",
@@ -22,9 +21,9 @@
   "author": "Jonas Helfer <jonas@helfer.email>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/apollostack/apollo-starter-kit/issues"
+    "url": "https://github.com/apollographql/starwars-server/issues"
   },
-  "homepage": "https://github.com/apollostack/apollo-starter-kit#readme",
+  "homepage": "https://github.com/apollographql/starwars-server#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
     "cors": "^2.8.0",
