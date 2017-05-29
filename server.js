@@ -28,9 +28,10 @@ graphQLServer.use('/schema', (req, res) => {
   res.send(printSchema(schema));
 });
 
-graphQLServer.listen(GRAPHQL_PORT, () => console.log(
-  `GraphQL Server is now running on http://localhost:${GRAPHQL_PORT}/graphql`
-));
+graphQLServer.listen(GRAPHQL_PORT, () => {
+  console.log(`GraphQL Server is now running on http://localhost:${GRAPHQL_PORT}/graphql`);
+  console.log(`GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphiql`);
+});
 
 // WebSocket server for subscriptions
 const websocketServer = createServer((request, response) => {

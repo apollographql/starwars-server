@@ -7,7 +7,7 @@ This is a really simple GraphQL server that uses [Apollo Server](https://github.
 Clone the repository and run `npm install`
 
 ```
-git clone https://github.com/apollostack/starwars-server
+git clone https://github.com/apollographql/starwars-server
 cd starwars-server
 npm install
 ```
