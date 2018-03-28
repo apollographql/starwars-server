@@ -1,6 +1,6 @@
 {
   "name": "starwars-server",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "GraphQL Server setup with an example Star Wars schema",
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node",
