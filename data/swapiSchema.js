@@ -18,10 +18,16 @@ import {
 
 import { makeExecutableSchema } from 'graphql-tools';
 
+import { PubSub, SubscriptionManager, withFilter } from 'graphql-subscriptions';
+
+const pubsub = new PubSub();
+const ADDED_REVIEW_TOPIC = 'new_review';
+
 const schemaString = `
 schema {
   query: Query
   mutation: Mutation
+  subscription: Subscription
 }
 
 # The query type, represents all of the entry points into our object graph
@@ -38,6 +44,11 @@ type Query {
 # The mutation type, represents all updates we can make to our data
 type Mutation {
   createReview(episode: Episode, review: ReviewInput!): Review
+}
+
+# The subscription type, represents all subscriptions we can make to our data
+type Subscription {
+  reviewAdded(episode: Episode): Review
 }
 
 # The episodes in the Star Wars trilogy
@@ -163,6 +174,9 @@ type PageInfo {
 
 # Represents a review for a movie
 type Review {
+  # The movie
+  episode: Episode
+
   # The number of stars this review gave, 1-5
   stars: Int!
 
@@ -409,7 +423,20 @@ const resolvers = {
   Mutation: {
     createReview: (root, { episode, review }) => {
       reviews[episode].push(review);
+      review.episode = episode;
+      pubsub.publish(ADDED_REVIEW_TOPIC, {reviewAdded: review});
       return review;
+    },
+  },
+  Subscription: {
+    reviewAdded: {
+        subscribe: withFilter(
+            () => pubsub.asyncIterator(ADDED_REVIEW_TOPIC),
+            (payload, variables) => {
+                return (payload !== undefined) && 
+                ((variables.episode === null) || (payload.reviewAdded.episode === variables.episode));
+            }
+        ),
     },
   },
   Character: {

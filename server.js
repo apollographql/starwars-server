@@ -1,50 +1,39 @@
 import express from 'express';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import bodyParser from 'body-parser';
-import cors from 'cors';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import { execute, subscribe } from 'graphql';
 import { createServer } from 'http';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
-import { printSchema } from 'graphql/utilities/schemaPrinter';
+import cors from 'cors';
 
-import { subscriptionManager } from './data/subscriptions';
 import schema from './data/schema';
 
-const GRAPHQL_PORT = 8080;
-const WS_PORT = 8090;
+const PORT = 8080;
 
-const graphQLServer = express().use('*', cors());
+const app = express();
 
-graphQLServer.use('/graphql', bodyParser.json(), graphqlExpress({
-  schema,
-  context: {},
+app.use('*', cors());
+
+// bodyParser is needed just for POST.
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+
+app.get('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql', // if you want GraphiQL enabled
+  subscriptionsEndpoint: `ws://localhost:${PORT}/websocket`,
 }));
 
-graphQLServer.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
-}));
-
-graphQLServer.use('/schema', (req, res) => {
-  res.set('Content-Type', 'text/plain');
-  res.send(printSchema(schema));
+// Wrap the Express server
+const ws = createServer(app);
+ws.listen(PORT, () => {
+  console.log(`Apollo Server is now running on http://localhost:${PORT}`);
+  // Set up the WebSocket for handling GraphQL subscriptions
+  // eslint-disable-next-line
+  new SubscriptionServer({
+    execute,
+    subscribe,
+    schema,
+  }, {
+    server: ws,
+    path: '/websocket',
+  });
 });
-
-graphQLServer.listen(GRAPHQL_PORT, () => {
-  console.log(`GraphQL Server is now running on http://localhost:${GRAPHQL_PORT}/graphql`);
-  console.log(`GraphiQL is now running on http://localhost:${GRAPHQL_PORT}/graphiql`);
-});
-
-// WebSocket server for subscriptions
-const websocketServer = createServer((request, response) => {
-  response.writeHead(404);
-  response.end();
-});
-
-websocketServer.listen(WS_PORT, () => console.log( // eslint-disable-line no-console
-  `Websocket Server is now running on http://localhost:${WS_PORT}`
-));
-
-// eslint-disable-next-line
-new SubscriptionServer(
-  { subscriptionManager },
-  websocketServer
-);
