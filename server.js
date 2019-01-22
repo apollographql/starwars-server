@@ -1,9 +1,6 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
-import { execute, subscribe } from 'graphql';
+import { ApolloServer } from 'apollo-server-express';
 import { createServer } from 'http';
-import { SubscriptionServer } from 'subscriptions-transport-ws';
 import cors from 'cors';
 
 import schema from './data/schema';
@@ -14,26 +11,18 @@ const app = express();
 
 app.use('*', cors());
 
-// bodyParser is needed just for POST.
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+const server = new ApolloServer({ 
+  schema, 
+  subscriptions: { path: "/websocket" }
+});
 
-app.get('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql', // if you want GraphiQL enabled
-  subscriptionsEndpoint: `ws://localhost:${PORT}/websocket`,
-}));
+server.applyMiddleware({ app });
 
-// Wrap the Express server
-const ws = createServer(app);
-ws.listen(PORT, () => {
-  console.log(`Apollo Server is now running on http://localhost:${PORT}`);
-  // Set up the WebSocket for handling GraphQL subscriptions
-  // eslint-disable-next-line
-  new SubscriptionServer({
-    execute,
-    subscribe,
-    schema,
-  }, {
-    server: ws,
-    path: '/websocket',
-  });
+const httpServer = createServer(app);
+
+server.installSubscriptionHandlers(httpServer);
+
+httpServer.listen(PORT, () => {
+  console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`);
+  console.log(`🚀 Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`);
 });
