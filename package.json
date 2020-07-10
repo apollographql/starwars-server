@@ -34,14 +34,10 @@
     "lodash": "^4.17.19"
   },
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^10.0.1",
-    "babel-plugin-inline-import": "^3.0.0",
-    "babel-polyfill": "6.26.0",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "6.24.1",
-    "nodemon": "^1.18.9"
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "nodemon": "^2.0.4"
   }
 }
