@@ -31,7 +31,7 @@
     "express": "^4.17.1",
     "graphql": "^14.7.0",
     "graphql-subscriptions": "^1.0.0",
-    "graphql-tools": "^4.0.3",
+    "graphql-tools": "^4.0.8",
     "lodash": "^4.17.19"
   },
   "devDependencies": {
