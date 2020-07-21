@@ -430,13 +430,17 @@ const resolvers = {
   },
   Subscription: {
     reviewAdded: {
-        subscribe: withFilter(
-            () => pubsub.asyncIterator(ADDED_REVIEW_TOPIC),
-            (payload, variables) => {
-                return (payload !== undefined) && 
-                ((variables.episode === null) || (payload.reviewAdded.episode === variables.episode));
-            }
-        ),
+      subscribe: withFilter(
+        () => pubsub.asyncIterator(ADDED_REVIEW_TOPIC),
+        (payload, variables) => {
+          console.log('incoming payload', payload);
+          return (payload !== undefined) &&
+            (
+              (variables.episode === null) ||
+              (payload.reviewAdded.episode === variables.episode)
+            );
+        }
+      )
     },
   },
   Character: {

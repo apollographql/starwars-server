@@ -31,14 +31,14 @@
     "express": "^4.17.1",
     "graphql": "^15.3.0",
     "graphql-subscriptions": "=1.0.0",
-    "graphql-tools": "^4.0.8",
+    "graphql-tools": "^6.0.14",
     "lodash": "^4.17.19"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.4",
-    "@babel/core": "^7.10.4",
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
-    "@babel/node": "^7.10.4",
+    "@babel/node": "^7.10.5",
     "nodemon": "^2.0.4"
   }
 }
