@@ -35,9 +35,13 @@ type Query {
   hero(episode: Episode): Character
   reviews(episode: Episode!): [Review]
   search(text: String): [SearchResult]
+  characters: [Character]
   character(id: ID!): Character
+  droids: [Droid]
   droid(id: ID!): Droid
+  humans: [Human]
   human(id: ID!): Human
+  starships: [Starship]
   starship(id: ID!): Starship
 }
 
@@ -355,6 +359,13 @@ function getFriends(character) {
   return character.friends.map(id => getCharacter(id));
 }
 
+function getCharacters() {
+  return [
+      ...humans,
+      ...droids,
+  ]
+}
+
 /**
  * Allows us to fetch the undisputed hero of the Star Wars trilogy, R2-D2.
  */
@@ -374,6 +385,10 @@ function getReviews(episode) {
   return reviews[episode];
 }
 
+function getHumans() {
+  return humans;
+}
+
 /**
  * Allows us to query for the human with the given id.
  */
@@ -381,11 +396,19 @@ function getHuman(id) {
   return humanData[id];
 }
 
+function getDroids() {
+  return droids;
+}
+
 /**
  * Allows us to query for the droid with the given id.
  */
 function getDroid(id) {
   return droidData[id];
+}
+
+function getStarships() {
+  return starships;
 }
 
 function getStarship(id) {
@@ -403,9 +426,13 @@ function fromCursor(str) {
 const resolvers = {
   Query: {
     hero: (root, { episode }) => getHero(episode),
+    characters: getCharacters,
     character: (root, { id }) => getCharacter(id),
+    humans: getHumans,
     human: (root, { id }) => getHuman(id),
+    droids: getDroids,
     droid: (root, { id }) => getDroid(id),
+    starships: getStarships,
     starship: (root, { id }) => getStarship(id),
     reviews: (root, { episode }) => getReviews(episode),
     search: (root, { text }) => {
