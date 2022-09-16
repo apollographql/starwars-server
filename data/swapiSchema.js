@@ -309,7 +309,7 @@ droids.forEach((ship) => {
 const starships = [
   {
     id: '3000',
-    name: 'Millenium Falcon',
+    name: 'Millennium Falcon',
     length: 34.37,
   },
   {
