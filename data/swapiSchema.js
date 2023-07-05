@@ -490,7 +490,7 @@ const resolvers = {
     },
     friendsPaginated: ({ friends }, {limit, offset}) => {
       offset = offset || 0;
-      limit = limit || 0;
+      limit = limit || 10;
       const slicedFriends = friends.slice(offset, offset + limit);
       return friends.map(getCharacter);
     },
@@ -520,7 +520,7 @@ const resolvers = {
     },
     friendsPaginated: ({ friends }, {limit, offset}) => {
       offset = offset || 0;
-      limit = limit || 0;
+      limit = limit || 10;
       const slicedFriends = friends.slice(offset, offset + limit);
       return slicedFriends.map(getCharacter);
     },
