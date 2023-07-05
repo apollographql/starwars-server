@@ -78,6 +78,9 @@ interface Character {
   # The friends of the character exposed as a connection with edges
   friendsConnection(first: Int, after: ID): FriendsConnection!
 
+  # The friends of the character, with pagination.
+  friendsPaginated(limit: Int, offset: Int): [Character]
+
   # The movies this character appears in
   appearsIn: [Episode]!
 }
@@ -114,6 +117,9 @@ type Human implements Character {
   # The friends of the human exposed as a connection with edges
   friendsConnection(first: Int, after: ID): FriendsConnection!
 
+  # The friends of the character, with pagination.
+  friendsPaginated(limit: Int, offset: Int): [Character]
+
   # The movies this human appears in
   appearsIn: [Episode]!
 
@@ -134,6 +140,9 @@ type Droid implements Character {
 
   # The friends of the droid exposed as a connection with edges
   friendsConnection(first: Int, after: ID): FriendsConnection!
+
+  # The friends of the character, with pagination.
+  friendsPaginated(limit: Int, offset: Int): [Character]
 
   # The movies this droid appears in
   appearsIn: [Episode]!
@@ -479,6 +488,12 @@ const resolvers = {
         totalCount: friends.length
       };
     },
+    friendsPaginated: ({ friends }, {limit, offset}) => {
+      offset = offset || 0;
+      limit = limit || 0;
+      const slicedFriends = friends.slice(offset, offset + limit);
+      return friends.map(getCharacter);
+    },
     starships: ({ starships }) => starships.map(getStarship),
     appearsIn: ({ appearsIn }) => appearsIn,
   },
@@ -502,6 +517,12 @@ const resolvers = {
         },
         totalCount: friends.length
       };
+    },
+    friendsPaginated: ({ friends }, {limit, offset}) => {
+      offset = offset || 0;
+      limit = limit || 0;
+      const slicedFriends = friends.slice(offset, offset + limit);
+      return slicedFriends.map(getCharacter);
     },
     appearsIn: ({ appearsIn }) => appearsIn,
   },
