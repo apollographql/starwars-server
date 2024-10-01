@@ -1,4 +1,6 @@
-# Star Wars example server
+# This repo is no longer maintained and has been archived.
+
+## Star Wars Example Server
 
 This is a really simple GraphQL server that uses [Apollo Server](https://github.com/apollostack/apollo-server) and [GraphQL Tools](https://github.com/apollostack/graphql-tools) to serve the Star Wars example schema from http://www.graphql.org.
 
